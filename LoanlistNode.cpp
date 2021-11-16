@@ -141,7 +141,7 @@ bool Loanlist::RemoveLoan(int loanid)
 
 
 // PrintList function implementation
-void Loanlist::PrintList()
+void Loanlist::PrintLoanList()
 {
     if (head == NULL)
         cout << "Loanlist is empty" << endl;

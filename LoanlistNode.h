@@ -4,7 +4,7 @@
 #include <string>
 using namespace std;
 
-/****** MovielistNode class specifications ******/
+/****** LoanlistNode class specifications ******/
 class LoanlistNode
 {
 public:
@@ -34,8 +34,8 @@ private:
 public:
    Loanlist();
    void AddLoan(int loanid, int movieid, int customerid, string status ,date dueDate, time dueTime);
-   bool RemoveLoan(string id);
-   void PrintList();
+   bool RemoveLoan(int loanid);
+   void PrintLoanList();
    
   
 };

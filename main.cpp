@@ -1,8 +1,10 @@
 #include "MovielistNode.h"
 #include "LoanlistNode.h"
+#include "CustomerlistNode.h"
 // function prototype
 void PrintMenu(string title);
 void PrintLoanMenu();
+void PrintCustomerMenu();
 // start main function
 int main()
 {
@@ -14,6 +16,8 @@ int main()
     PrintMovieMenu(plTitle);
 
     PrintLoanMenu();
+
+    PrintCustomerMenu();
 
     return 0;
 }
@@ -168,7 +172,81 @@ void PrintLoanMenu()
         {
             cout << endl
                  << title << " - OUTPUT FULL Loan LIST" << endl;
-            list.PrintList();
+            list.PrintLoanList();
+        }
+        else
+        {
+            cout << "Invalid menu choice! Please try again." << endl;
+        }
+    }
+} // end of PrintMenu function
+
+
+
+void PrintCustomerMenu()
+{
+    Customerlist list;
+    int customerid; int creditCardNumber; string customerName; date creditCardExpirationDate;
+   int creditCardValidationKey; int numberOfMoviesActive;
+    char choice;
+
+    while (true)
+    {
+        cout << " Customer LIST MENU" << endl;
+        cout << "a - Add Customer" << endl;
+        cout << "d - Remove Customer" << endl;
+        
+        cout << "o - Output full Customer list" << endl;
+        cout << "q - Quit" << endl
+             << endl;
+
+        cout << "Choose an option:\n";
+        cin >> choice;
+        cin.ignore(); //flush newline
+
+        if (choice == 'q' || choice == 'Q')
+        {
+            exit(1);
+        }
+        else if (choice == 'a' || choice == 'A')
+        {
+            cout << "\nADD Customer" << endl;
+            cout << "Enter Customer's unique ID: ";
+            cin >> customerid;
+            cin.ignore(); //ignore newline
+            cout << "Enter creditCardNumber: ";
+            cin >> creditCardNumber;
+            cin.ignore(); //ignore newline
+            cout << "Enter customerName: ";
+            getline(cin, customerName);
+            cout << "Enter creditCardExpirationDate: ";
+            getline(cin, creditCardExpirationDate);
+            cout << "Enter creditCardValidationKey: ";
+            cin >> creditCardValidationKey;
+            cin.ignore(); //ignore newline
+            cout << "Enter numberOfMoviesActive: ";
+            cin >> numberOfMoviesActive;
+            cin.ignore(); //ignore newline
+          
+            
+            
+            list.AddCustomer(customerid,creditCardNumber,customerName,creditCardExpirationDate,
+                creditCardValidationKey,numberOfMoviesActive);
+        }
+        else if (choice == 'd' || choice == 'D')
+        {
+            cout << "\nREMOVE Customer" << endl;
+            cout << "Enter Customer's unique ID: ";
+            cin >> customerid;
+            list.RemoveCustomer(customerid);
+        }
+        
+       
+        else if (choice == 'o' || choice == 'O')
+        {
+            cout << endl
+                 << title << " - OUTPUT FULL Customer LIST" << endl;
+            list.PrintCustomerList();
         }
         else
         {
