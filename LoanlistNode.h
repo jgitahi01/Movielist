@@ -36,7 +36,7 @@ public:
    void AddLoan(int loanid, int movieid, int customerid, string status ,date dueDate, time dueTime);
    bool RemoveLoan(string id);
    void PrintList();
-   bool ChangePosition(int oldPos, int newPos);
-   int TotalLoans();
+   
+  
 };
 #endif

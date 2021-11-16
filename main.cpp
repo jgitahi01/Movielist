@@ -1,8 +1,8 @@
 #include "MovielistNode.h"
-
+#include "LoanlistNode.h"
 // function prototype
 void PrintMenu(string title);
-
+void PrintLoanMenu();
 // start main function
 int main()
 {
@@ -11,7 +11,9 @@ int main()
     cout << "Enter movielist title:\n";
     getline(cin, plTitle);
 
-    PrintMenu(plTitle);
+    PrintMovieMenu(plTitle);
+
+    PrintLoanMenu();
 
     return 0;
 }
@@ -20,7 +22,7 @@ int main()
 // PrintMenu() takes the movie title as a parameter and outputs a menu
 // of options to manipulate the movielist. Each option is represented by a
 // single character. Build and output the menu within the function.
-void PrintMenu(string title)
+void PrintMovieMenu(string title)
 {
     Movielist list;
     string id;
@@ -106,3 +108,74 @@ void PrintMenu(string title)
         }
     }
 } // end of PrintMenu function
+
+
+void PrintLoanMenu()
+{
+    Loanlist list;
+    int loanid; int movieid; int customerid; string status; date dueDate; time dueTime;
+    char choice;
+
+    while (true)
+    {
+        cout << " LOAN LIST MENU" << endl;
+        cout << "a - Add Loan" << endl;
+        cout << "d - Remove Loan" << endl;
+        
+        cout << "o - Output full Loan list" << endl;
+        cout << "q - Quit" << endl
+             << endl;
+
+        cout << "Choose an option:\n";
+        cin >> choice;
+        cin.ignore(); //flush newline
+
+        if (choice == 'q' || choice == 'Q')
+        {
+            exit(1);
+        }
+        else if (choice == 'a' || choice == 'A')
+        {
+            cout << "\nADD Loan" << endl;
+            cout << "Enter loan's unique ID: ";
+            cin >> loanid;
+            cin.ignore(); //ignore newline
+            cout << "Enter movie's unique ID: ";
+            cin >> movieid;
+            cin.ignore(); //ignore newline
+            cout << "Enter Customers's unique ID: ";
+            cin >> customerid;
+            cin.ignore(); //ignore newline
+            cout << "Enter loan status: ";
+            getline(cin, status);
+            cout << "Enter dueDate: ";
+            getline(cin, dueDate);
+            cout << "Enter dueTime: ";
+            getline(cin, dueTime);
+            
+            list.AddLoan(loanid, movieid, customerid, status, dueDate,dueTime);
+        }
+        else if (choice == 'd' || choice == 'D')
+        {
+            cout << "\nREMOVE Loan" << endl;
+            cout << "Enter Loan's unique ID: ";
+            cin >> loanid;
+            list.RemoveLoan(loanid);
+        }
+        
+       
+        else if (choice == 'o' || choice == 'O')
+        {
+            cout << endl
+                 << title << " - OUTPUT FULL Loan LIST" << endl;
+            list.PrintList();
+        }
+        else
+        {
+            cout << "Invalid menu choice! Please try again." << endl;
+        }
+    }
+} // end of PrintMenu function
+
+
+
